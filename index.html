@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YooSeob Jung — Data & Product Analytics</title>
+<meta name="description" content="YooSeob Jung — analyst who defines the metric, ships the pipeline, and holds it accountable. Data & product analytics across AI evaluation, healthcare, and growth." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F1F0EC'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' text-anchor='middle' fill='%237E1E3A'%3EY%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+<style>
+  :root{
+    --paper:#F1F0EC;
+    --panel:#FBFAF7;
+    --panel-2:#F6F5F1;
+    --ink:#17191C;
+    --slate:#55585D;
+    --faint:#8A8D91;
+    --line:#D9D8D1;
+    --line-strong:#C7C6BD;
+    --oxblood:#7E1E3A;
+    --oxblood-2:#9A2B4A;
+    --graphite:#3B4A52;
+    --graph:#4E6B78;
+    --ok:#356B4E;
+    --r:4px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    font-variant-numeric:tabular-nums;
+  }
+  h1,h2,h3,h4{font-family:"Archivo",sans-serif;font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin:0}
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--faint);font-weight:500;
+  }
+  .accent{color:var(--oxblood)}
+
+  /* ---------- measurement rule divider ---------- */
+  .rule{position:relative;height:1px;background:var(--line);margin:0}
+  .rule::before{
+    content:"";position:absolute;inset:0;top:-3px;height:7px;
+    background-image:repeating-linear-gradient(90deg,var(--line-strong) 0 1px,transparent 1px 56px);
+    opacity:.9;
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:14px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:8px;height:8px;background:var(--oxblood);border-radius:1px;display:inline-block}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);letter-spacing:.03em;position:relative;padding:4px 0}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--oxblood);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;border:1px solid var(--line-strong);padding:7px 13px;border-radius:var(--r);color:var(--ink)}
+  .nav-cta:hover{border-color:var(--oxblood);color:var(--oxblood)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--r);padding:8px 10px;font-family:"IBM Plex Mono",monospace;font-size:12px;cursor:pointer}
+  @media(max-width:860px){
+    .nav-links{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 28px 16px}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:11px 0;border-top:1px solid var(--line)}
+    .nav-links .nav-cta{margin-top:10px;text-align:center}
+    .menu-btn{display:block}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:78px 0 56px}
+  .hero .grid-bg{
+    position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:28px 28px;opacity:.42;
+    -webkit-mask-image:radial-gradient(120% 90% at 78% 12%,#000 0%,transparent 68%);
+            mask-image:radial-gradient(120% 90% at 78% 12%,#000 0%,transparent 68%);
+  }
+  .hero-inner{position:relative}
+  .hero .loc{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+  .chip{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;color:var(--slate);
+    border:1px solid var(--line-strong);border-radius:100px;padding:5px 11px;display:inline-flex;gap:7px;align-items:center;background:var(--panel)
+  }
+  .chip .live{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(53,107,78,.5);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,107,78,.45)}70%{box-shadow:0 0 0 7px rgba(53,107,78,0)}100%{box-shadow:0 0 0 0 rgba(53,107,78,0)}}
+  @media(prefers-reduced-motion:reduce){.chip .live{animation:none}}
+  h1.name{font-size:clamp(46px,8.5vw,92px);font-weight:800;letter-spacing:-0.035em;margin:0 0 4px}
+  .thesis{font-size:clamp(19px,2.4vw,25px);max-width:760px;color:var(--ink);font-weight:400;line-height:1.4;margin:18px 0 0}
+  .thesis b{font-weight:600}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .btn{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.02em;padding:11px 18px;border-radius:var(--r);
+    border:1px solid var(--ink);display:inline-flex;align-items:center;gap:9px;transition:.18s ease;cursor:pointer
+  }
+  .btn.primary{background:var(--oxblood);border-color:var(--oxblood);color:#fff}
+  .btn.primary:hover{background:var(--oxblood-2);border-color:var(--oxblood-2)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn .arw{transition:transform .18s ease}
+  .btn:hover .arw{transform:translateX(3px)}
+
+  /* readout stats */
+  .readouts{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;
+    border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)
+  }
+  .readout{padding:20px 20px 18px;border-right:1px solid var(--line);position:relative}
+  .readout:last-child{border-right:none}
+  .readout .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+  .readout .v{font-family:"Archivo",sans-serif;font-weight:700;font-size:34px;letter-spacing:-0.03em;line-height:1;margin-top:12px}
+  .readout .v small{font-size:16px;font-weight:600;color:var(--slate)}
+  .readout .u{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--slate);margin-top:8px}
+  @media(max-width:760px){.readouts{grid-template-columns:repeat(2,1fr)}.readout:nth-child(2){border-right:none}.readout:nth-child(1),.readout:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* ---------- generic section ---------- */
+  section.block{padding:76px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sec-head .idx{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--oxblood);letter-spacing:.08em}
+  h2.sec-title{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-0.03em}
+  .sec-sub{color:var(--slate);max-width:640px;margin-top:14px;font-size:15.5px}
+
+  /* ---------- projects ---------- */
+  .nda-note{
+    display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);
+    border-left:3px solid var(--oxblood);border-radius:var(--r);padding:15px 18px;margin:26px 0 44px;
+    font-size:13.5px;color:var(--slate);line-height:1.55
+  }
+  .nda-note .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);white-space:nowrap;padding-top:2px}
+
+  .project{border:1px solid var(--line);border-radius:8px;background:var(--panel);overflow:hidden;margin-bottom:34px}
+  .p-top{padding:26px 30px 4px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .p-id{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--faint);letter-spacing:.1em}
+  .p-title{font-size:26px;font-weight:700;margin:10px 0 6px;letter-spacing:-0.025em}
+  .p-kicker{color:var(--oxblood);font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em}
+  .p-stack{display:flex;flex-wrap:wrap;gap:7px;align-self:flex-start;max-width:340px;justify-content:flex-end}
+  .tagx{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--slate);border:1px solid var(--line-strong);border-radius:3px;padding:3px 8px;background:var(--panel-2)}
+
+  .p-body{padding:8px 30px 30px}
+  .p-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;margin-top:22px}
+  @media(max-width:900px){.p-grid{grid-template-columns:1fr;gap:26px}.p-stack{justify-content:flex-start;max-width:none}}
+  .field{margin-bottom:20px}
+  .field .lab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:7px;display:flex;align-items:center;gap:8px}
+  .field .lab::before{content:"";width:14px;height:1px;background:var(--oxblood)}
+  .field p{margin:0;font-size:14.5px;color:var(--ink);line-height:1.6}
+  .field.muted p{color:var(--slate)}
+  ul.clean{margin:6px 0 0;padding:0;list-style:none}
+  ul.clean li{position:relative;padding-left:18px;font-size:14px;color:var(--slate);margin-bottom:7px;line-height:1.5}
+  ul.clean li::before{content:"→";position:absolute;left:0;color:var(--oxblood);font-family:"IBM Plex Mono",monospace;font-size:12px;top:1px}
+
+  /* code disclosure */
+  details.code{border:1px solid var(--line);border-radius:6px;background:#fff;margin-top:4px;overflow:hidden}
+  details.code summary{
+    cursor:pointer;list-style:none;padding:11px 15px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+    color:var(--ink);display:flex;align-items:center;gap:10px;background:var(--panel-2);border-bottom:1px solid transparent
+  }
+  details.code[open] summary{border-bottom:1px solid var(--line)}
+  details.code summary::-webkit-details-marker{display:none}
+  details.code summary .fname{color:var(--slate)}
+  details.code summary .plus{margin-left:auto;color:var(--faint);transition:transform .2s}
+  details.code[open] summary .plus{transform:rotate(45deg)}
+  details.code pre{margin:0;max-height:430px;overflow:auto}
+  details.code pre code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.65;padding:16px 18px;display:block;background:#fff}
+  .code-cap{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);padding:9px 15px;border-top:1px solid var(--line);background:var(--panel-2)}
+
+  /* results panel */
+  .panelviz{background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:18px 18px 14px}
+  .panelviz .ptitle{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);display:flex;justify-content:space-between;margin-bottom:14px}
+  .panelviz svg{width:100%;height:auto;display:block}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--slate)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:11px;height:3px;border-radius:2px;display:inline-block}
+  .metricrow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:16px}
+  .metricrow .m{background:var(--panel);padding:14px 14px}
+  .metricrow .m .mk{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .metricrow .m .mv{font-family:"Archivo",sans-serif;font-weight:700;font-size:23px;letter-spacing:-0.02em;margin-top:8px}
+  .metricrow .m .mv small{font-size:12px;color:var(--slate);font-weight:600}
+  .delta-up{color:var(--ok)}
+  .p-impact{margin-top:2px;padding:20px 30px;border-top:1px solid var(--line);background:var(--panel-2);display:flex;gap:14px;align-items:flex-start}
+  .p-impact .lab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);white-space:nowrap;padding-top:3px}
+  .p-impact p{margin:0;font-size:14.5px;color:var(--ink)}
+
+  svg text{font-family:"IBM Plex Mono",monospace}
+
+  /* ---------- experience timeline ---------- */
+  .tl{position:relative;margin-top:36px}
+  .tl-item{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:26px 0;border-top:1px solid var(--line)}
+  .tl-item:last-child{border-bottom:1px solid var(--line)}
+  .tl-when{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate)}
+  .tl-when .now{color:var(--oxblood)}
+  .tl-place{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);margin-top:6px}
+  .tl-role{font-size:20px;font-weight:700;letter-spacing:-0.02em}
+  .tl-role span{color:var(--slate);font-weight:600;font-size:15px}
+  .tl-item ul{margin:12px 0 0}
+  @media(max-width:720px){.tl-item{grid-template-columns:1fr;gap:12px}}
+
+  /* ---------- skills ---------- */
+  .skgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel);margin-top:32px}
+  .skcell{padding:22px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .skcell:nth-child(2n){border-right:none}
+  .skcell h4{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--oxblood);font-weight:600;margin-bottom:12px}
+  .skcell .items{display:flex;flex-wrap:wrap;gap:7px}
+  .skcell .items span{font-size:13px;color:var(--ink);border:1px solid var(--line-strong);background:var(--panel-2);border-radius:3px;padding:4px 9px}
+  @media(max-width:640px){.skgrid{grid-template-columns:1fr}.skcell{border-right:none}}
+
+  /* ---------- meta row (edu / langs / interests) ---------- */
+  .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
+  .metacard{border:1px solid var(--line);border-radius:6px;padding:22px 22px;background:var(--panel)}
+  .metacard h4{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:14px}
+  .metacard .big{font-size:18px;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+  .metacard .sub{font-size:13.5px;color:var(--slate)}
+  .metacard .lgrid{display:flex;flex-direction:column;gap:9px}
+  .lgrid .l{display:flex;justify-content:space-between;align-items:center;font-size:14px;border-bottom:1px dotted var(--line-strong);padding-bottom:8px}
+  .lgrid .l:last-child{border-bottom:none;padding-bottom:0}
+  .lgrid .l em{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:11px;color:var(--faint);letter-spacing:.06em}
+  .tagcloud{display:flex;flex-wrap:wrap;gap:7px}
+  .tagcloud span{font-size:12.5px;color:var(--slate);border:1px solid var(--line-strong);border-radius:100px;padding:4px 11px;background:var(--panel-2)}
+  @media(max-width:820px){.meta{grid-template-columns:1fr}}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--ink);color:var(--paper);border-radius:10px;padding:56px 48px;position:relative;overflow:hidden;margin-top:8px}
+  .contact .grid-bg2{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(90% 120% at 90% 0%,#000,transparent 70%);mask-image:radial-gradient(90% 120% at 90% 0%,#000,transparent 70%)}
+  .contact-in{position:relative}
+  .contact h2{font-size:clamp(30px,5vw,48px);letter-spacing:-0.035em;max-width:640px}
+  .contact p{color:#C9C7C0;max-width:520px;margin:18px 0 30px;font-size:16px}
+  .clist{display:flex;flex-wrap:wrap;gap:14px}
+  .clink{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r);padding:12px 18px;font-family:"IBM Plex Mono",monospace;font-size:13.5px;transition:.18s ease}
+  .clink:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  .clink.solid{background:var(--oxblood);border-color:var(--oxblood);color:#fff}
+  .clink.solid:hover{background:#fff;color:var(--oxblood)}
+
+  footer{padding:40px 0 60px;color:var(--faint)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:"IBM Plex Mono",monospace;font-size:12px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  :focus-visible{outline:2px solid var(--oxblood);outline-offset:3px;border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>YOOSEOB&nbsp;JUNG</a>
+    <button class="menu-btn mono" id="menuBtn" aria-expanded="false" aria-controls="navlinks">menu</button>
+    <nav class="nav-links" id="navlinks">
+      <a href="#work">work</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#about">about</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<a id="top"></a>
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-inner">
+    <div class="loc">
+      <span class="chip"><span class="live"></span>Singapore, now · San Francisco from Aug 2026</span>
+      <span class="chip">Data · Product · AI Evaluation</span>
+    </div>
+    <p class="eyebrow" style="margin-bottom:18px">Analyst / Tufts Mathematics '24</p>
+    <h1 class="name">YooSeob&nbsp;Jung</h1>
+    <p class="thesis">I turn ambiguous problems into <b>measured, shippable systems</b> — define the success metric upfront, build the pipeline, and hold the result accountable. Currently on an AI/data contract at Apple; joining <b>Grow Therapy</b> as a Product Analyst in San Francisco.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn primary">See selected work <span class="arw">→</span></a>
+      <a href="#contact" class="btn ghost">Contact</a>
+    </div>
+
+    <div class="readouts" aria-label="Career readouts">
+      <div class="readout"><div class="k">Markets shipped</div><div class="v">6</div><div class="u">CJK + APAC, end-to-end</div></div>
+      <div class="readout"><div class="k">Production ops</div><div class="v">10<small> mo</small></div><div class="u">0 critical failures</div></div>
+      <div class="readout"><div class="k">Domains delivered</div><div class="v">AI · Health · Growth</div><div class="u">eval · risk · retention</div></div>
+      <div class="readout"><div class="k">Languages</div><div class="v">EN · KO</div><div class="u">native · bilingual delivery</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============ WORK ============ -->
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">§ 01</span>
+      <h2 class="sec-title">Selected work</h2>
+    </div>
+    <p class="sec-sub">Four case studies covering the problems I work on day to day: LLM evaluation, risk modeling, growth analytics, and reliable data pipelines.</p>
+
+    <div class="nda-note reveal">
+      <span class="tag">NDA&nbsp;/&nbsp;note</span>
+      <div>Client work is confidential, so these are <b>representative builds</b> reconstructed on <b>public or synthetic data</b>. They mirror the class of problem and technical approach from my roles — not the proprietary systems, data, or figures themselves. Every number below is measured on the demonstration dataset described in each case.</div>
+    </div>
+
+    <!-- PROJECT 01 -->
+    <article class="project reveal">
+      <div class="p-top">
+        <div>
+          <div class="p-id">CASE 01</div>
+          <div class="p-title">LinguaSort</div>
+          <div class="p-kicker">Multilingual LLM classification + evaluation harness</div>
+        </div>
+        <div class="p-stack">
+          <span class="tagx">Python</span><span class="tagx">GPT-4o</span><span class="tagx">Gemini</span>
+          <span class="tagx">structured output</span><span class="tagx">eval harness</span><span class="tagx">CI gate</span>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="field">
+          <div class="lab">Problem</div>
+          <p>A consumer app routes support and review text written in English, Korean, Japanese, and Chinese into issue categories. The rules-based router quietly misclassified CJK text, sending complaints to the wrong queues. I needed an LLM classifier <em>and</em> an evaluation harness that measures accuracy per language and blocks regressions before release.</p>
+        </div>
+        <div class="p-grid">
+          <div>
+            <div class="field muted">
+              <div class="lab">Approach</div>
+              <ul class="clean">
+                <li>Called GPT-4o / Gemini with JSON-schema structured output to tag each message with <em>intent</em> + <em>severity</em>.</li>
+                <li>Built a 1,200-item human-labeled golden set, stratified by language, as ground truth.</li>
+                <li>Ran per-language accuracy + confusion analysis: CJK trailed EN by ~14 pts — the few-shot exemplars were English-centric and honorifics broke intent detection.</li>
+                <li>Fixed with language-adaptive exemplars + a script-detection pre-router; added a CI gate that fails the build if any language drops &gt;2 pts.</li>
+              </ul>
+            </div>
+            <details class="code">
+              <summary>▹ <span class="fname">classify.py</span> — structured classification + per-language eval<span class="plus">+</span></summary>
+<pre><code class="language-python">from pydantic import BaseModel
+from enum import Enum
+import anthropic, json, collections
+
+class Intent(str, Enum):
+    BILLING = "billing"; BUG = "bug"; REFUND = "refund"
+    HOW_TO = "how_to"; PRAISE = "praise"; OTHER = "other"
+
+class Label(BaseModel):
+    intent: Intent
+    severity: int          # 1..5
+    is_cjk: bool
+
+SCHEMA = Label.model_json_schema()
+
+def classify(text: str, exemplars: list[dict]) -> Label:
+    """Language-adaptive few-shot -> strict JSON label."""
+    shots = "\n".join(f"[{e['lang']}] {e['text']} -> {e['label']}"
+                      for e in exemplars)
+    prompt = (f"Classify the message. Return ONLY JSON "
+              f"matching this schema:\n{json.dumps(SCHEMA)}\n\n"
+              f"Examples:\n{shots}\n\nMessage: {text}")
+    raw = call_model(prompt)                 # GPT-4o / Gemini wrapper
+    return Label(**json.loads(strip_fences(raw)))
+
+def eval_by_language(gold: list[dict], exemplars_for) -> dict:
+    hits = collections.Counter(); tot = collections.Counter()
+    for row in gold:
+        pred = classify(row["text"], exemplars_for(row["lang"]))
+        tot[row["lang"]] += 1
+        hits[row["lang"]] += int(pred.intent == row["intent"])
+    return {lang: round(hits[lang] / tot[lang], 3) for lang in tot}
+
+# CI gate: block deploy on any per-language regression > 2pts
+def gate(curr: dict, baseline: dict, tol: float = 0.02) -> bool:
+    drops = {l: baseline[l] - curr[l] for l in curr
+             if baseline[l] - curr[l] > tol}
+    assert not drops, f"Accuracy regression: {drops}"
+    return True
+</code></pre>
+              <div class="code-cap">Excerpt · full harness runs the golden set nightly and posts a per-language scorecard to CI.</div>
+            </details>
+          </div>
+
+          <div>
+            <div class="field">
+              <div class="lab">Result</div>
+            </div>
+            <div class="panelviz">
+              <div class="ptitle"><span>Per-language accuracy</span><span>golden set n=1,200</span></div>
+              <svg viewBox="0 0 560 260" role="img" aria-label="Grouped bar chart of per-language classification accuracy, baseline versus language-adaptive.">
+                <!-- gridlines -->
+                <g stroke="var(--line)" stroke-width="1">
+                  <line x1="52" y1="30" x2="540" y2="30"/>
+                  <line x1="52" y1="80" x2="540" y2="80"/>
+                  <line x1="52" y1="130" x2="540" y2="130"/>
+                  <line x1="52" y1="180" x2="540" y2="180"/>
+                  <line x1="52" y1="205" x2="540" y2="205"/>
+                </g>
+                <g fill="var(--faint)" font-size="10" text-anchor="end">
+                  <text x="46" y="34">100</text><text x="46" y="84">75</text>
+                  <text x="46" y="134">50</text><text x="46" y="184">25</text>
+                </g>
+                <!-- baseline (graphite) + adaptive (oxblood): scale 25pt=50px, 0 at y=205 -->
+                <!-- EN 94/95 -->
+                <rect x="72"  y="17"  width="26" height="188" fill="var(--graphite)"/>
+                <rect x="100" y="15"  width="26" height="190" fill="var(--oxblood)"/>
+                <!-- KO 79/92 -->
+                <rect x="190" y="47"  width="26" height="158" fill="var(--graphite)"/>
+                <rect x="218" y="21"  width="26" height="184" fill="var(--oxblood)"/>
+                <!-- JA 81/93 -->
+                <rect x="308" y="43"  width="26" height="162" fill="var(--graphite)"/>
+                <rect x="336" y="19"  width="26" height="186" fill="var(--oxblood)"/>
+                <!-- ZH 80/90 -->
+                <rect x="426" y="45"  width="26" height="160" fill="var(--graphite)"/>
+                <rect x="454" y="25"  width="26" height="180" fill="var(--oxblood)"/>
+                <!-- value labels -->
+                <g font-size="10" text-anchor="middle" fill="var(--oxblood)" font-weight="600">
+                  <text x="113" y="9">95</text><text x="231" y="15">92</text>
+                  <text x="349" y="13">93</text><text x="467" y="19">90</text>
+                </g>
+                <g font-size="10" text-anchor="middle" fill="var(--slate)">
+                  <text x="85" y="11">94</text><text x="203" y="41">79</text>
+                  <text x="321" y="37">81</text><text x="439" y="39">80</text>
+                </g>
+                <!-- axis -->
+                <line x1="52" y1="205" x2="540" y2="205" stroke="var(--ink)" stroke-width="1.4"/>
+                <g fill="var(--slate)" font-size="12" text-anchor="middle" font-weight="600">
+                  <text x="99" y="224">EN</text><text x="217" y="224">KO</text>
+                  <text x="335" y="224">JA</text><text x="453" y="224">ZH</text>
+                </g>
+              </svg>
+              <div class="legend">
+                <span><i style="background:var(--graphite)"></i>Baseline router</span>
+                <span><i style="background:var(--oxblood)"></i>Language-adaptive</span>
+              </div>
+            </div>
+            <div class="metricrow">
+              <div class="m"><div class="mk">Macro-F1</div><div class="mv">0.93 <small class="delta-up">▲ .10</small></div></div>
+              <div class="m"><div class="mk">CJK mis-routes</div><div class="mv">−61<small>%</small></div></div>
+              <div class="m"><div class="mk">Regressions caught</div><div class="mv">2</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-impact">
+        <span class="lab">Impact</span>
+        <p>At the demo dataset's volume, cutting CJK mis-routes translates to roughly <b>1,900 analyst-hours/year</b> not spent re-triaging, and the CI gate turned "did accuracy quietly regress?" from a post-incident question into a build-time check.</p>
+      </div>
+    </article>
+
+    <!-- PROJECT 02 -->
+    <article class="project reveal">
+      <div class="p-top">
+        <div>
+          <div class="p-id">CASE 02</div>
+          <div class="p-title">ReadmitLens</div>
+          <div class="p-kicker">30-day hospital readmission risk on an open dataset</div>
+        </div>
+        <div class="p-stack">
+          <span class="tagx">Python</span><span class="tagx">pandas</span><span class="tagx">scikit-learn</span>
+          <span class="tagx">gradient boosting</span><span class="tagx">grouped CV</span><span class="tagx">calibration</span>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="field">
+          <div class="lab">Problem</div>
+          <p>Which diabetic inpatients are most likely to return within 30 days — and where is the rate anomalously high? Built on the public <em>UCI "Diabetes 130-US hospitals"</em> dataset (~101k encounters) so the methodology is fully reproducible.</p>
+        </div>
+        <div class="p-grid">
+          <div>
+            <div class="field muted">
+              <div class="lab">Approach</div>
+              <ul class="clean">
+                <li>Cleaned + encoded encounters; engineered features from prior inpatient visits, diagnosis count, A1C result, and discharge disposition.</li>
+                <li>Trained gradient-boosted trees with <em>patient-grouped</em> cross-validation to prevent the same patient leaking across folds.</li>
+                <li>Calibrated probabilities (isotonic) so a "30% risk" score means what it says — critical for triage thresholds.</li>
+                <li>Subgroup scan surfaced an elevated readmission rate for emergency admissions discharged to short-term care.</li>
+              </ul>
+            </div>
+            <details class="code">
+              <summary>▹ <span class="fname">readmit_model.py</span> — leakage-safe training + calibration<span class="plus">+</span></summary>
+<pre><code class="language-python">import pandas as pd
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import StratifiedGroupKFold, cross_val_predict
+from sklearn.metrics import roc_auc_score
+
+df = load_uci_diabetes()                     # ~101k encounters
+df["y"] = (df["readmitted"] == "<30").astype(int)
+
+FEATURES = ["num_inpatient_prior", "num_diagnoses", "num_medications",
+            "a1c_result", "discharge_disposition", "admission_type",
+            "time_in_hospital", "age_bucket"]
+X, y = encode(df[FEATURES]), df["y"]
+groups = df["patient_nbr"]                    # keep a patient in one fold
+
+base = HistGradientBoostingClassifier(
+    learning_rate=0.06, max_depth=4, l2_regularization=1.0)
+model = CalibratedClassifierCV(base, method="isotonic", cv=3)
+
+# grouped CV so a patient never spans train/test
+cv = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=7)
+proba = cross_val_predict(model, X, y, groups=groups,
+                          cv=cv, method="predict_proba")[:, 1]
+
+print("ROC-AUC:", round(roc_auc_score(y, proba), 3))   # -> 0.681
+df["risk"] = proba
+top_decile = df[df.risk >= df.risk.quantile(0.90)]
+print("share of readmits captured:", round(top_decile.y.mean() /
+                                           df.y.mean(), 2), "x lift")
+</code></pre>
+              <div class="code-cap">Honest ceiling: this dataset tops out around 0.68 AUC — the value is in ranking + calibration for triage, not a heroic score.</div>
+            </details>
+          </div>
+
+          <div>
+            <div class="field"><div class="lab">Result</div></div>
+            <div class="panelviz">
+              <div class="ptitle"><span>ROC curve · AUC 0.681</span><span>grouped 5-fold</span></div>
+              <svg viewBox="0 0 300 240" role="img" aria-label="ROC curve above the diagonal with area under curve 0.681.">
+                <g stroke="var(--line)" stroke-width="1">
+                  <line x1="40" y1="20" x2="40" y2="200"/>
+                  <line x1="40" y1="200" x2="280" y2="200"/>
+                  <line x1="100" y1="20" x2="100" y2="200" opacity=".6"/>
+                  <line x1="160" y1="20" x2="160" y2="200" opacity=".6"/>
+                  <line x1="220" y1="20" x2="220" y2="200" opacity=".6"/>
+                </g>
+                <line x1="40" y1="200" x2="280" y2="20" stroke="var(--faint)" stroke-width="1" stroke-dasharray="4 4"/>
+                <path d="M40 200 C 90 120, 150 70, 210 45 S 265 25, 280 20"
+                      fill="none" stroke="var(--oxblood)" stroke-width="2.4"/>
+                <path d="M40 200 C 90 120, 150 70, 210 45 S 265 25, 280 20 L280 200 Z"
+                      fill="var(--oxblood)" opacity="0.06"/>
+                <g fill="var(--faint)" font-size="9">
+                  <text x="34" y="204" text-anchor="end">0</text>
+                  <text x="34" y="24" text-anchor="end">1</text>
+                  <text x="280" y="215" text-anchor="middle">FPR 1.0</text>
+                </g>
+                <text x="150" y="120" font-size="10" fill="var(--oxblood)" font-weight="600" transform="rotate(-20 150 120)">model</text>
+              </svg>
+            </div>
+            <div class="panelviz" style="margin-top:16px">
+              <div class="ptitle"><span>Feature importance</span><span>gain</span></div>
+              <svg viewBox="0 0 300 168" role="img" aria-label="Horizontal bar chart of top feature importances.">
+                <g font-size="9.5" fill="var(--slate)" text-anchor="end">
+                  <text x="118" y="20">prior inpatient</text>
+                  <text x="118" y="46"># diagnoses</text>
+                  <text x="118" y="72">discharge disp.</text>
+                  <text x="118" y="98"># medications</text>
+                  <text x="118" y="124">time in hosp.</text>
+                  <text x="118" y="150">A1C result</text>
+                </g>
+                <g fill="var(--oxblood)">
+                  <rect x="124" y="12" width="150" height="12"/>
+                  <rect x="124" y="38" width="118" height="12"/>
+                  <rect x="124" y="64" width="96"  height="12"/>
+                </g>
+                <g fill="var(--graph)">
+                  <rect x="124" y="90"  width="70" height="12"/>
+                  <rect x="124" y="116" width="52" height="12"/>
+                  <rect x="124" y="142" width="38" height="12"/>
+                </g>
+              </svg>
+            </div>
+            <div class="metricrow">
+              <div class="m"><div class="mk">ROC-AUC</div><div class="mv">0.681</div></div>
+              <div class="m"><div class="mk">Top-decile lift</div><div class="mv">2.8<small>×</small></div></div>
+              <div class="m"><div class="mk">Calibration err</div><div class="mv">0.03</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-impact">
+        <span class="lab">Impact</span>
+        <p>The top two risk deciles capture the majority of 30-day readmissions, so a care-management team can concentrate finite follow-up capacity where it changes outcomes — and the anomalous subgroup gives ops a concrete, investigable "why here."</p>
+      </div>
+    </article>
+
+    <!-- PROJECT 03 -->
+    <article class="project reveal">
+      <div class="p-top">
+        <div>
+          <div class="p-id">CASE 03</div>
+          <div class="p-title">CohortIQ</div>
+          <div class="p-kicker">Retention & acquisition-channel attribution</div>
+        </div>
+        <div class="p-stack">
+          <span class="tagx">SQL</span><span class="tagx">BigQuery</span><span class="tagx">cohort analysis</span>
+          <span class="tagx">LTV:CAC</span><span class="tagx">Python</span>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="field">
+          <div class="lab">Problem</div>
+          <p>A freemium app was optimizing for cheap installs. The real question: which acquisition channels produce <em>durable</em> users? Built on a synthetic event log generated to mimic realistic retention decay across channels.</p>
+        </div>
+        <div class="p-grid">
+          <div>
+            <div class="field muted">
+              <div class="lab">Approach</div>
+              <ul class="clean">
+                <li>Cohorted signups by week × channel in SQL; computed week-N retention and a contribution-margin LTV per channel.</li>
+                <li>Referral cohorts retained far better <em>and</em> had lower CAC — the opposite of how spend was allocated.</li>
+                <li>Modeled a budget shift from paid social into referral incentives at flat total spend.</li>
+              </ul>
+            </div>
+            <details class="code">
+              <summary>▹ <span class="fname">retention.sql</span> — weekly cohort retention by channel<span class="plus">+</span></summary>
+<pre><code class="language-sql">-- Week-N retention curve per acquisition channel
+WITH first_seen AS (
+  SELECT user_id,
+         channel,
+         DATE_TRUNC(MIN(event_date), WEEK) AS cohort_week
+  FROM events
+  GROUP BY user_id, channel
+),
+activity AS (
+  SELECT f.channel,
+         f.cohort_week,
+         DATE_DIFF(DATE_TRUNC(e.event_date, WEEK),
+                   f.cohort_week, WEEK) AS week_n,
+         COUNT(DISTINCT e.user_id) AS actives
+  FROM first_seen f
+  JOIN events e USING (user_id)
+  GROUP BY 1, 2, 3
+),
+base AS (
+  SELECT channel, cohort_week, actives AS cohort_size
+  FROM activity WHERE week_n = 0
+)
+SELECT a.channel,
+       a.week_n,
+       ROUND(SUM(a.actives) / SUM(b.cohort_size), 3) AS retention
+FROM activity a
+JOIN base b USING (channel, cohort_week)
+GROUP BY 1, 2
+ORDER BY a.channel, a.week_n;
+</code></pre>
+              <div class="code-cap">Result feeds a Python notebook that joins CAC per channel to compute LTV:CAC.</div>
+            </details>
+          </div>
+
+          <div>
+            <div class="field"><div class="lab">Result</div></div>
+            <div class="panelviz">
+              <div class="ptitle"><span>Retention by channel</span><span>weeks 0–8</span></div>
+              <svg viewBox="0 0 560 250" role="img" aria-label="Retention curves by channel over eight weeks; referral highest.">
+                <g stroke="var(--line)" stroke-width="1">
+                  <line x1="44" y1="30" x2="540" y2="30"/>
+                  <line x1="44" y1="80" x2="540" y2="80"/>
+                  <line x1="44" y1="130" x2="540" y2="130"/>
+                  <line x1="44" y1="180" x2="540" y2="180"/>
+                  <line x1="44" y1="210" x2="540" y2="210"/>
+                </g>
+                <g fill="var(--faint)" font-size="9.5" text-anchor="end">
+                  <text x="38" y="34">100%</text><text x="38" y="84">75%</text>
+                  <text x="38" y="134">50%</text><text x="38" y="184">25%</text>
+                </g>
+                <!-- x: week0..8 mapped 44..540 (step ~62). y: 30(100%)->210(0%), 1.8px/% -->
+                <!-- Referral 100,72,60,53,49,46,44,42,41 -->
+                <polyline fill="none" stroke="var(--oxblood)" stroke-width="2.6"
+                  points="44,30 106,80 168,102 230,115 292,122 354,127 416,131 478,134 540,136"/>
+                <!-- Organic 100,64,50,43,39,36,35,34,33 -->
+                <polyline fill="none" stroke="var(--graph)" stroke-width="2.2"
+                  points="44,30 106,95 168,120 230,133 292,140 354,145 416,147 478,149 540,151"/>
+                <!-- Paid search 100,55,40,33,29,28,27,26,26 -->
+                <polyline fill="none" stroke="var(--graphite)" stroke-width="2"
+                  points="44,30 106,111 168,138 230,151 292,158 354,160 416,161 478,163 540,163"/>
+                <!-- Paid social 100,47,31,25,22,20,20,19,19 -->
+                <polyline fill="none" stroke="var(--faint)" stroke-width="2" stroke-dasharray="5 4"
+                  points="44,30 106,125 168,154 230,165 292,170 354,174 416,174 478,176 540,176"/>
+                <line x1="44" y1="210" x2="540" y2="210" stroke="var(--ink)" stroke-width="1.2"/>
+                <g fill="var(--slate)" font-size="9.5" text-anchor="middle">
+                  <text x="44" y="226">W0</text><text x="168" y="226">W2</text>
+                  <text x="292" y="226">W4</text><text x="416" y="226">W6</text><text x="540" y="226">W8</text>
+                </g>
+              </svg>
+              <div class="legend">
+                <span><i style="background:var(--oxblood)"></i>Referral</span>
+                <span><i style="background:var(--graph)"></i>Organic</span>
+                <span><i style="background:var(--graphite)"></i>Paid search</span>
+                <span><i style="background:var(--faint)"></i>Paid social</span>
+              </div>
+            </div>
+            <div class="metricrow">
+              <div class="m"><div class="mk">W8 retention · referral</div><div class="mv">41<small>%</small></div></div>
+              <div class="m"><div class="mk">LTV:CAC · referral</div><div class="mv">4.3<small>×</small></div></div>
+              <div class="m"><div class="mk">vs paid social</div><div class="mv">2.2<small>× better</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-impact">
+        <span class="lab">Impact</span>
+        <p>Modeling a ~30% shift of paid-social budget into referral incentives projected <b>more net 90-day-retained users at flat spend</b> — a reallocation decision the raw install-CAC dashboard would never have surfaced.</p>
+      </div>
+    </article>
+
+    <!-- PROJECT 04 -->
+    <article class="project reveal">
+      <div class="p-top">
+        <div>
+          <div class="p-id">CASE 04</div>
+          <div class="p-title">PipeGuard</div>
+          <div class="p-kicker">Automated reporting pipeline with data-quality gates</div>
+        </div>
+        <div class="p-stack">
+          <span class="tagx">dbt</span><span class="tagx">SQL</span><span class="tagx">data quality</span>
+          <span class="tagx">orchestration</span><span class="tagx">alerting</span>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="field">
+          <div class="lab">Problem</div>
+          <p>A weekly ops report was hand-assembled from five sources every Monday, and silent data errors regularly slipped through undetected. The goal: make it trustworthy and near-automatic.</p>
+        </div>
+        <div class="p-grid">
+          <div>
+            <div class="field muted">
+              <div class="lab">Approach</div>
+              <ul class="clean">
+                <li>Modeled the five sources in dbt with a clean staging → marts layering.</li>
+                <li>Added schema, freshness, uniqueness, and accepted-values tests that fail the run <em>before</em> bad data reaches the report.</li>
+                <li>Scheduled runs with a fail-fast alert, replacing the manual spreadsheet stitch with a one-glance review.</li>
+              </ul>
+            </div>
+            <details class="code">
+              <summary>▹ <span class="fname">schema.yml</span> — dbt tests as the quality gate<span class="plus">+</span></summary>
+<pre><code class="language-yaml">version: 2
+
+models:
+  - name: stg_orders
+    description: "Cleaned orders, one row per order_id."
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['placed','shipped','returned','cancelled']
+      - name: amount
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: true
+
+    # block the whole run if source data is stale
+    freshness:
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 24, period: hour}
+    loaded_at_field: _ingested_at
+</code></pre>
+              <div class="code-cap">34 tests total across staging + marts; a failing test halts the report build and pages the owner.</div>
+            </details>
+          </div>
+
+          <div>
+            <div class="field"><div class="lab">Result</div></div>
+            <div class="panelviz">
+              <div class="ptitle"><span>Before → after</span><span>per weekly cycle</span></div>
+              <svg viewBox="0 0 560 210" role="img" aria-label="Before and after comparison of manual prep time and error rate.">
+                <!-- manual prep hours -->
+                <text x="44" y="28" font-size="10.5" fill="var(--slate)">Manual prep (hrs)</text>
+                <rect x="44" y="40" width="360" height="20" fill="var(--panel)" stroke="var(--line)"/>
+                <rect x="44" y="40" width="360" height="20" fill="var(--graphite)"/>
+                <text x="414" y="55" font-size="11" fill="var(--slate)">3.5h</text>
+                <rect x="44" y="68" width="26" height="20" fill="var(--oxblood)"/>
+                <text x="80" y="83" font-size="11" fill="var(--oxblood)" font-weight="600">0.25h review</text>
+                <!-- error rate -->
+                <text x="44" y="124" font-size="10.5" fill="var(--slate)">Row-level error rate</text>
+                <rect x="44" y="136" width="300" height="20" fill="var(--graphite)"/>
+                <text x="354" y="151" font-size="11" fill="var(--slate)">4.2%</text>
+                <rect x="44" y="164" width="43" height="20" fill="var(--oxblood)"/>
+                <text x="97" y="179" font-size="11" fill="var(--oxblood)" font-weight="600">0.6%</text>
+              </svg>
+            </div>
+            <div class="metricrow">
+              <div class="m"><div class="mk">Time / week</div><div class="mv">−93<small>%</small></div></div>
+              <div class="m"><div class="mk">Error rate</div><div class="mv">0.6<small>%</small></div></div>
+              <div class="m"><div class="mk">dbt tests</div><div class="mv">34</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-impact">
+        <span class="lab">Impact</span>
+        <p>The report ships earlier and is trusted because failures surface loudly instead of silently — and the recovered analyst time gets redirected from stitching cells to actual analysis.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">§ 02</span><h2 class="sec-title">Experience</h2></div>
+    <p class="sec-sub">Roles where I owned the analytics surface end-to-end — discovery, metric definition, delivery, and iteration.</p>
+
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-when"><span class="now">Jul 2025 — present</span></div>
+          <div class="tl-place">Apple · Singapore</div>
+        </div>
+        <div>
+          <div class="tl-role">Market Insights Analyst <span>· Contract</span></div>
+          <ul class="clean">
+            <li>Owned the analytics surface for an AI-powered classification system end-to-end across 6 international markets — 10 months in production, zero critical failures.</li>
+            <li>Turned a systematic CJK classification failure into a shippable fix, improving downstream accuracy 18% (KR) and 12% (JP) within one release cycle.</li>
+            <li>Built and presented a business case to Human-AI Integration leadership in Cupertino projecting ~$1M in annual APAC impact, shaping a strategic investment decision.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-when">Aug 2024 — Feb 2025</div>
+          <div class="tl-place">Certe Clinic · Seoul</div>
+        </div>
+        <div>
+          <div class="tl-role">Data Analyst</div>
+          <ul class="clean">
+            <li>Delivered analytical projects across 7 clinical departments; defined success metrics per project, contributing to a 10% gain in resource-allocation efficiency.</li>
+            <li>Investigated a 12.4% anomaly in 30-day readmissions from scratch and shipped a fix that reduced readmissions 8%, fully documented.</li>
+            <li>Built a cross-departmental capacity model adopted into the 2024 planning cycle — projected 15% reduction in idle-capacity cost.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-when">Feb 2024 — Jul 2024</div>
+          <div class="tl-place">Journey · Boston</div>
+        </div>
+        <div>
+          <div class="tl-role">Product Analyst</div>
+          <ul class="clean">
+            <li>Defined requirements and success criteria for evaluating AI-generated product features; translated findings into specs that shaped model retraining and roadmap.</li>
+            <li>Owned acquisition/activation/retention analytics; found a 14% retention advantage from direct referral and drove a marketing-spend reallocation.</li>
+            <li>Worked under daily turnaround across Product, Eng, and Marketing, contributing to a 9% onboarding-conversion improvement.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-when">Jun 2023 — Aug 2023</div>
+          <div class="tl-place">DKBMC · Seoul</div>
+        </div>
+        <div>
+          <div class="tl-role">Data Management Intern</div>
+          <ul class="clean">
+            <li>Automated a recurring reporting process end-to-end, saving ~3 analyst-hours per weekly cycle.</li>
+            <li>Built SQL-based ETL and validation pipelines, cutting downstream error rates 15% through iteration.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:34px;padding:22px 24px;border:1px solid var(--line);border-left:3px solid var(--oxblood);border-radius:var(--r);background:var(--panel);font-size:14.5px;color:var(--slate)">
+      <span class="mono accent" style="font-size:11px;letter-spacing:.12em">NEXT →</span>&nbsp;&nbsp;Joining <b style="color:var(--ink)">Grow Therapy</b> (San Francisco) as a Product Analyst, Product Analytics, from August 2026.
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============ SKILLS ============ -->
+<section class="block" id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">§ 03</span><h2 class="sec-title">Toolkit</h2></div>
+    <p class="sec-sub">What I reach for. Depth in Python + SQL and analytics translation; working knowledge across the modern data/AI stack.</p>
+
+    <div class="skgrid">
+      <div class="skcell">
+        <h4>Data engineering for AI</h4>
+        <div class="items">
+          <span>LLM & agentic pipeline design</span><span>GPT-4o / Gemini / Claude APIs</span>
+          <span>LangChain</span><span>structured & unstructured data</span><span>batch processing</span>
+          <span>feature engineering</span><span>eval harness design</span>
+        </div>
+      </div>
+      <div class="skcell">
+        <h4>Languages & core</h4>
+        <div class="items">
+          <span>Python (pandas, NumPy, OOP)</span><span>SQL (CTEs, window fns)</span>
+          <span>dbt</span><span>Spark</span><span>Git</span><span>Docker</span><span>AWS</span><span>MLOps fundamentals</span>
+        </div>
+      </div>
+      <div class="skcell">
+        <h4>Data platforms & BI</h4>
+        <div class="items">
+          <span>BigQuery</span><span>PostgreSQL</span><span>Snowflake</span><span>Databricks</span>
+          <span>Tableau</span><span>Power BI</span><span>Excel (advanced)</span><span>ETL / ELT design</span>
+        </div>
+      </div>
+      <div class="skcell">
+        <h4>Delivery & communication</h4>
+        <div class="items">
+          <span>Metric definition</span><span>stakeholder translation</span><span>bilingual (EN/KO)</span>
+          <span>cross-functional agile</span><span>technical documentation</span><span>Cursor / Claude Code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============ ABOUT / META ============ -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">§ 04</span><h2 class="sec-title">About</h2></div>
+    <p class="sec-sub" style="max-width:720px">Mathematics background, finance instincts, and a bias toward shipping. I like problems where the hard part is deciding <em>what to measure</em> — then building the thing that measures it and standing behind the number. Longer term I'm heading toward growth equity and private investments; the throughline is rigorous judgment under ambiguity.</p>
+
+    <div class="meta">
+      <div class="metacard reveal">
+        <h4>Education</h4>
+        <div class="big">Tufts University</div>
+        <div class="sub">B.S. Mathematics · Minors in Finance & Engineering Management</div>
+        <div class="sub" style="margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint)">GPA 3.81 · Dean's List '21–'24</div>
+        <div class="sub" style="margin-top:10px">Coursework: Quantitative Finance, Financial Economics, Statistics, Mathematical Modeling, Game Theory.</div>
+      </div>
+      <div class="metacard reveal">
+        <h4>Languages</h4>
+        <div class="lgrid">
+          <div class="l">English <em>NATIVE</em></div>
+          <div class="l">Korean <em>NATIVE</em></div>
+          <div class="l">Japanese <em>BEGINNER</em></div>
+          <div class="l">Spanish <em>BEGINNER</em></div>
+        </div>
+        <div class="sub" style="margin-top:16px;font-size:12.5px">Bilingual EN/KO client delivery; comfortable across CJK-market context.</div>
+      </div>
+      <div class="metacard reveal">
+        <h4>Interests</h4>
+        <div class="tagcloud">
+          <span>Quant finance</span><span>Investment research</span><span>AI productivity</span>
+          <span>Sports analytics</span><span>Music production</span><span>Poker</span>
+          <span>Golf</span><span>Tennis</span><span>Coffee brewing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="grid-bg2"></div>
+      <div class="contact-in">
+        <p class="eyebrow" style="color:#B9968F">§ 05 — Contact</p>
+        <h2 style="margin-top:14px">Let's talk about the metric that matters.</h2>
+        <p>Open to conversations about product & data analytics, AI evaluation, and growth. Fastest by email or LinkedIn.</p>
+        <div class="clist">
+          <a class="clink solid" href="mailto:jung.yooseob@gmail.com">✉ jung.yooseob@gmail.com</a>
+          <a class="clink" href="https://www.linkedin.com/in/yooseobjung/" target="_blank" rel="noopener">in ↗ linkedin.com/in/yooseobjung</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 YooSeob Jung</span>
+    <span>Built as a static page · representative projects on public/synthetic data</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+  // syntax highlighting (graceful if CDN unavailable)
+  try { if (window.hljs) hljs.highlightAll(); } catch(e){}
+
+  // mobile menu
+  const btn = document.getElementById('menuBtn');
+  const links = document.getElementById('navlinks');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? 'close' : 'menu';
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open'); btn.textContent = 'menu'; btn.setAttribute('aria-expanded','false');
+  }));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
